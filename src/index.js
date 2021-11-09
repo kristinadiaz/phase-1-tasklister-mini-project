@@ -1,20 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let form = document.querySelector('form');
+  let form = document.getElementById('create-task-form');
   form.addEventListener('submit', (e) => {
       e.preventDefault();
-      buildToDo(e.target['new-task-description'].value)
+
+      buildNewTask(e.target.description.value)
+      
       form.reset();
   })
 });
 
-function buildToDo(todo) {
-    let p = document.createElement('p');
+function buildNewTask(newTask) {
+    let li = document.createElement('li');
     let btn = document.createElement('button');
+
     btn.addEventListener('click', handleDelete);
     btn.textContent = 'x';
-    p.textContent = `${todo} `;
-    p.appendChild(btn);
-    document.querySelector('#tasks').appendChild(p)
+    li.textContent = `${newTask} `;
+
+    li.appendChild(btn);
+    document.querySelector('#tasks').appendChild(li)
 };
 
 function handleDelete(e) {
